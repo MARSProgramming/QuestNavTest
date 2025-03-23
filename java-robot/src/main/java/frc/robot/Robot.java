@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DriveSubsystem;
 
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
@@ -16,7 +15,6 @@ import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
 public class Robot extends LoggedRobot {
-  private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
 
@@ -54,9 +52,7 @@ public class Robot extends LoggedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     // Get the DriveSubsystem from the RobotContainer
-    DriveSubsystem m_robotDrive = m_robotContainer.getDriveSubsystem();
     // Periodically clean up the control messages processed on the Quest headset
-    m_robotDrive.cleanupQuestNavMessages();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -70,10 +66,7 @@ public class Robot extends LoggedRobot {
   /** This function is called once when the robot enters Autonomous mode. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+
   }
 
   /** This function is periodically called while the robot is in Autonomous mode. */
@@ -83,9 +76,6 @@ public class Robot extends LoggedRobot {
   /** This function is called once when the robot enters Teleop mode. */
   @Override
   public void teleopInit() {
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
   }
 
   /** This function is periodically called while the robot is in Teleop mode. */
