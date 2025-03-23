@@ -32,7 +32,7 @@ import frc.robot.QuestNav;
 
 public class RobotContainer {
 
-private QuestNav questNav; 
+public QuestNav questNav; 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */

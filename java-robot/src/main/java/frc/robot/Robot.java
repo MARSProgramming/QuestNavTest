@@ -14,6 +14,9 @@ import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose3d;
+
 public class Robot extends LoggedRobot {
 
   private RobotContainer m_robotContainer;
@@ -51,6 +54,9 @@ public class Robot extends LoggedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    Pose2d PoseA = m_robotContainer.questNav.getPose();
+    Logger.recordOutput("MyPose", PoseA);
+
     // Get the DriveSubsystem from the RobotContainer
     // Periodically clean up the control messages processed on the Quest headset
   }
